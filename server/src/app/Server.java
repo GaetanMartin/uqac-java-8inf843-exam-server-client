@@ -28,7 +28,7 @@ public class Server {
         while (true) {
             try {
                 Socket connectionSocket = serverSocket.accept();
-                Communication clientCommunication = new Communication(connectionSocket);
+                Skeleton clientCommunication = new Skeleton(connectionSocket);
                 new Thread(clientCommunication).run();
             } catch (IOException e) {
                 System.err.println("Error accepting new connection");

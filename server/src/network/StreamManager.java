@@ -5,6 +5,7 @@ import java.net.Socket;
 
 /**
  * Class used to manage all the network streams & exchanges
+ *
  * @author Gaetan
  */
 public class StreamManager {
@@ -62,15 +63,18 @@ public class StreamManager {
 
     /**
      * Read an object from the socket inputstream
+     *
      * @return
      */
-    public Object receiveObject() {
+    public Object receiveObject() throws StreamCorruptedException {
         ObjectInputStream ois = null;
         try {
             ois = new ObjectInputStream(inputStream);
             Object object = ois.readObject();
             System.out.println("Object " + object.getClass().getName() + " succesfully received! ");
             return object;
+        } catch (StreamCorruptedException e) {
+            throw e;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

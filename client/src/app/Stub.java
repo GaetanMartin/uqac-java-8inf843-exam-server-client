@@ -13,10 +13,6 @@ import java.net.Socket;
  */
 public class Stub implements CalculatriceItf {
 
-        private static final String OPERATION_SEPARATOR = ":";
-        private static final String OPERANDE_SEPARATOR = "-";
-
-
     private final StreamManager streamManager;
     private Socket clientSocket;
 
@@ -47,10 +43,19 @@ public class Stub implements CalculatriceItf {
     }
 
     private int operation(String operation, int a, int b) {
-        String toSend = operation + OPERATION_SEPARATOR + a + OPERANDE_SEPARATOR + b;
-        System.out.println("Sending: " + toSend);
-        streamManager.write(toSend);
+        Message toSend = new Message(operation, a, b);
+        System.out.println("Sending: " + toSend.toString());
+
+        // First method: we send the string
+//        streamManager.write(toSend.toString());
+        // Second method: we send a message object
+        streamManager.sendObject(toSend);
         String resultString = streamManager.readString();
-        return Integer.parseInt(resultString);
+
+        if (!resultString.contains("err")) {
+            return Integer.parseInt(resultString);
+        }
+        return -1;
+
     }
 }

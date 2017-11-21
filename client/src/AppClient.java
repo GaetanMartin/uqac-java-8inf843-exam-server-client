@@ -19,9 +19,9 @@ public class AppClient {
             // Create the TCP Stub
             Stub stub = new Stub(Inet4Address.getByName(SERVER_HOST), SERVER_PORT);
 
-//            int r = stub.add(4, 3);
+            int r = stub.add(4, 3);
 //            int r = stub.multiply(4, 3);
-            int r = stub.substract(4, 3);
+//            int r = stub.substract(4, 3);
             System.out.println("Result = " + r);
             stub.finish();
 

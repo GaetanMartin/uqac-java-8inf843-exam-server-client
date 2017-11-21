@@ -30,6 +30,21 @@ public class StreamManager {
     }
 
     /**
+     * Send an object over tcp with ObjectOutputStream
+     * @param object
+     */
+    public void sendObject(Object object) {
+        ObjectOutputStream  oos = null;
+        try {
+            oos = new ObjectOutputStream(outputStream);
+            oos.writeObject(object);
+            System.out.println(object.getClass().getName() + " sent! ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Read a string from the inputstream
      *
      * @return String the message read
