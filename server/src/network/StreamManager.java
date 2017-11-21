@@ -15,7 +15,7 @@ public class StreamManager {
     private final InputStream inputStream;
     private final OutputStream outputStream;
 
-    StreamManager(Socket clientSocket) throws IOException {
+    public StreamManager(Socket clientSocket) throws IOException {
         this.inputStream = clientSocket.getInputStream();
         this.outputStream = clientSocket.getOutputStream();
     }

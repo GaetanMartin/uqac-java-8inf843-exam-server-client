@@ -1,7 +1,4 @@
-import network.Server;
-
-import java.io.File;
-import java.net.MalformedURLException;
+import app.Server;
 
 public class AppServer {
 

@@ -5,32 +5,28 @@ import java.net.Socket;
 
 /**
  * Class used to manage all the network streams & exchanges
- *
  * @author Gaetan
  */
 public class StreamManager {
 
+
+    private final static int BUFFER_DEFAULT_SIZE = 1024;
+
     private final InputStream inputStream;
     private final OutputStream outputStream;
 
-    StreamManager(Socket clientSocket) throws IOException {
+    public StreamManager(Socket clientSocket) throws IOException {
         this.inputStream = clientSocket.getInputStream();
         this.outputStream = clientSocket.getOutputStream();
     }
 
     /**
-     * Send the given file to the server
-     *
-     * @param fileName path to the file to send
+     * Receive a file with a dataInputStream from the input stream
      */
-    public void sendFile(String fileName) {
-        File file = new File(fileName);
-        try {
-            ByteStream.toStream(outputStream, file);
-            System.out.println(file + " sent!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public File receiveFile(File fileToCreate) throws IOException {
+
+        ByteStream.toFile(inputStream, fileToCreate);
+        return fileToCreate;
     }
 
     /**
@@ -53,7 +49,7 @@ public class StreamManager {
     /**
      * Write a message
      *
-     * @param message Write a message to the outputstream
+     * @param message Write a message in the outputstream
      */
     public void write(String message) {
         try {
@@ -65,18 +61,22 @@ public class StreamManager {
     }
 
     /**
-     * Send an object over tcp with ObjectOutputStream
-     * @param object
+     * Read an object from the socket inputstream
+     * @return
      */
-    public void sendObject(Object object) {
-        ObjectOutputStream  oos = null;
+    public Object receiveObject() {
+        ObjectInputStream ois = null;
         try {
-            oos = new ObjectOutputStream(outputStream);
-            oos.writeObject(object);
-            System.out.println(object.getClass().getName() + " sent! ");
+            ois = new ObjectInputStream(inputStream);
+            Object object = ois.readObject();
+            System.out.println("Object " + object.getClass().getName() + " succesfully received! ");
+            return object;
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
     /**
@@ -91,5 +91,4 @@ public class StreamManager {
             e.printStackTrace();
         }
     }
-
 }
