@@ -9,6 +9,7 @@ public class AppServer {
 
     /**
      * Launch the server on the given port
+     *
      * @param args
      */
     public static void main(String[] args) {

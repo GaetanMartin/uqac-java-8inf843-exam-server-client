@@ -2,6 +2,7 @@ package config;
 
 /**
  * This class is used only as a list of parameters
+ *
  * @author Gaetan
  */
 public class Config {

@@ -14,10 +14,9 @@ import java.net.Socket;
 public class Stub implements CalculatriceItf {
 
     private final StreamManager streamManager;
-    private Socket clientSocket;
 
     public Stub(InetAddress serverInet, int serverPort) throws IOException {
-        clientSocket = new Socket(serverInet, serverPort);
+        Socket clientSocket = new Socket(serverInet, serverPort);
         this.streamManager = new StreamManager(clientSocket);
         System.out.println("Stub running");
     }

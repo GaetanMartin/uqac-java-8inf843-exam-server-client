@@ -6,6 +6,7 @@ import java.net.Socket;
 
 /**
  * Represents a TCP Server
+ *
  * @author Gaetan
  */
 public class Server {

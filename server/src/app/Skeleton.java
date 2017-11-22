@@ -19,8 +19,8 @@ public class Skeleton implements Runnable {
     private Socket clientSocket;
     private StreamManager streamManager;
 
-    private static final String OPERATION_SEPARATOR = ":";
-    private static final String OPERANDE_SEPARATOR = "-";
+    private static final String OPERATION_SEPARATOR = "-";
+    private static final String OPERANDE_SEPARATOR = ":";
 
     Skeleton(Socket socket) {
         this.clientSocket = socket;
@@ -46,7 +46,9 @@ public class Skeleton implements Runnable {
         boolean stop = false;
 
         while (!stop) {
+            // First method with string
 //            stop = this.stringMethod();
+            // Second method with object
             stop = this.objectMethod();
         }
         this.close();

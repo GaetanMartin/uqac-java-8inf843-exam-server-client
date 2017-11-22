@@ -5,6 +5,7 @@ import java.net.Socket;
 
 /**
  * Class used to manage all the network streams & exchanges
+ *
  * @author Gaetan
  */
 public class StreamManager {
@@ -31,10 +32,11 @@ public class StreamManager {
 
     /**
      * Send an object over tcp with ObjectOutputStream
+     *
      * @param object
      */
     public void sendObject(Object object) {
-        ObjectOutputStream  oos = null;
+        ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(outputStream);
             oos.writeObject(object);
@@ -77,6 +79,7 @@ public class StreamManager {
 
     /**
      * Read an object from the socket inputstream
+     *
      * @return
      */
     public Object receiveObject() {

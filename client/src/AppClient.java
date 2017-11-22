@@ -9,17 +9,18 @@ import static config.Config.SERVER_PORT;
 
 /**
  * Launcher
+ *
  * @author Gaetan
  */
 public class AppClient {
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
         try {
             // Create the TCP Stub
             Stub stub = new Stub(Inet4Address.getByName(SERVER_HOST), SERVER_PORT);
 
-            int r = stub.add(4, 3);
+            int r = stub.add(32, 13);
 //            int r = stub.multiply(4, 3);
 //            int r = stub.substract(4, 3);
             System.out.println("Result = " + r);
